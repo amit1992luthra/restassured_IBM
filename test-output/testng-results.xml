@@ -1,34 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="3584" started-at="2022-05-11T05:13:42Z" finished-at="2022-05-11T05:13:46Z">
+  <suite name="Default suite" duration-ms="615" started-at="2022-05-12T04:51:22Z" finished-at="2022-05-12T04:51:23Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="3584" started-at="2022-05-11T05:13:42Z" finished-at="2022-05-11T05:13:46Z">
+    <test name="Default test" duration-ms="615" started-at="2022-05-12T04:51:22Z" finished-at="2022-05-12T04:51:23Z">
       <class name="IBM_May.RestAssured1.day1">
-        <test-method status="PASS" signature="testcase4(org.testng.ITestContext)[pri:0, instance:IBM_May.RestAssured1.day1@3834d63f]" name="testcase4" duration-ms="3494" started-at="2022-05-11T10:43:42Z" finished-at="2022-05-11T10:43:45Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[org.testng.TestRunner@1554909b]]>
-              </value>
-            </param>
-          </params>
+        <test-method status="PASS" signature="testcase5()[pri:0, instance:IBM_May.RestAssured1.day1@6fffcba5]" name="testcase5" duration-ms="604" started-at="2022-05-12T10:21:22Z" finished-at="2022-05-12T10:21:23Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testcase4 -->
-        <test-method status="PASS" signature="testcase3(org.testng.ITestContext)[pri:0, instance:IBM_May.RestAssured1.day1@3834d63f]" name="testcase3" duration-ms="72" started-at="2022-05-11T10:43:45Z" depends-on-methods="IBM_May.RestAssured1.day1.testcase4" finished-at="2022-05-11T10:43:46Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[org.testng.TestRunner@1554909b]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testcase3 -->
+        </test-method> <!-- testcase5 -->
       </class> <!-- IBM_May.RestAssured1.day1 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
