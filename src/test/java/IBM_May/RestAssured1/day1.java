@@ -3,6 +3,7 @@ package IBM_May.RestAssured1;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.testng.ITestContext;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -39,15 +40,18 @@ public class day1 {
 	@Test(enabled = false)
 	public void testcase3(ITestContext obj123)
 	{
-		RestAssured.baseURI = "http://localhost:3000";
+		RestAssured.baseURI = "https://petstore.swagger.io/v2";
 		
 		given()
-			.get("/sample/"+obj123.getAttribute("postid").toString()).
+		    .queryParam("username", "amit")
+		    .queryParam("password", "123456789").log().all().
+		when()
+			.get("/user/login").
 		then()
 			.statusCode(200)
 			.log().all();
 		
-		System.out.println(obj123.getAttribute("name").toString());
+		//System.out.println(obj123.getAttribute("name").toString());
 	}
 	
 	@Test(enabled = false)
@@ -56,7 +60,7 @@ public class day1 {
 		RestAssured.baseURI = "http://localhost:3000";
 		String body = "{\"batchname\":\"123456\",\"filename\":\"amit\",\"place\":\"chennai\"}";
 		
-		
+		String body2 = "{\"id\":9223372036854019000,\"category\":{\"id\":0,\"name\":"+body+"},\"name\":\"doggie\",\"photoUrls\":[\"string\"],\"tags\":[{\"id\":0,\"name\":\"string\"}],\"status\":\"available\"}";
 		 Response resp = given()
 			.header("content-type","application/json")
 			//.contentType(ContentType.JSON)
@@ -74,7 +78,7 @@ public class day1 {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Test
+	@Test(enabled = false)
 	public void testcase5()
 	{
 		RestAssured.baseURI = "http://localhost:3000";
@@ -93,25 +97,25 @@ public class day1 {
 		tagsobj.put("id", 456);
 		tagsobj.put("name", "cat");
 		
-	/*	parent.put("category",categoryobj);
+		parent.put("category",categoryobj);
 		parent.put("tags", tagsobj);
 		
-		JSONArray arr = new JSONArray();  //photourls 
-		JSONArray tags = new JSONArray();  //tags
 		
+		
+		
+		//Adding Photourls array
+		JSONArray arr = new JSONArray();  //photourls 
 		arr.add("image1");
 		arr.add("image 2");
 		arr.add("3");
-		
-		tags.add(tagsobj);
-		
-		
-	
-		parent.put("tags", tags);
-		
 		parent.put("photoUrls", arr);
 		
-		*/
+		//Adding tags as array
+		JSONArray tags = new JSONArray();  //tags
+		tags.add(tagsobj);
+		parent.put("tags", tags);
+
+		
 		
 	
 		
@@ -142,6 +146,61 @@ public class day1 {
 		
 		
 	}
+	
+	
+	@DataProvider(name="requestdata")
+	public Object[][] dataprov()
+	{
+		Object[][] data = new Object[4][3];
+		data[0][0] = "batchname1";
+		data[0][1]= "filename1";
+		data[0][2] = "place1";
+		
+		data[1][0] = "batchname2";
+		data[1][1]= "filename2";
+		data[1][2] = "place2";
+		
+		data[2][0] = "batchname3";
+		data[2][1]= "filename3";
+		data[2][2] = "place3";
+		
+		data[3][0] = "batchname4";
+		data[3][1]= "filename4";
+		data[3][2] = "place4";
+		
+		return data;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	@Test(enabled = true,dataProvider = "requestdata")
+	public void testcase6(String bn,String fn, String place )
+	{
+		RestAssured.baseURI = "http://localhost:3000";
+		
+		JSONObject parent = new JSONObject();
+		parent.put("batchname",bn);
+		parent.put("filename", fn);
+		parent.put("place", place);
+		
+		
+	given()
+		.header("content-type","application/json")
+		.body(parent.toJSONString()).
+	when()
+		.post("/sample").
+	then()
+		.statusCode(201).log().all();
+		
+		
+	}
+	
+	
 		
 		
 	
